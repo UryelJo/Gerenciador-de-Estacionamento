@@ -1,20 +1,25 @@
 <script setup lang="ts">
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import ComponenteBotao from './components/ComponenteBotao.vue';
+import { ref } from 'vue';
+
+let variavel = ref("")
+let variavel2 = ref("")
+let podeMostrarHelloWorld = ref(false);
+
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+      <input v-model="variavel"  type="text" />
+      <input v-model="variavel2" type="text">
+      <font-awesome-icon icon="car" />
+      <button v-on:click="podeMostrarHelloWorld = true" type="submit"> enviar</button>
     </div>
+    <HelloWorld v-if="podeMostrarHelloWorld" :msg="variavel" :name="variavel2"/>
   </header>
 
   <RouterView />
