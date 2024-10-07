@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Projeto_Estacionamento</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="WeatherForecast.cs" />
+    <Compile Remove="Enums\**" />
+    <Compile Remove="Actions\**" />
+    <Compile Remove="Entities\**" />
+    <Compile Remove="Models\**" />
+    <Compile Remove="Protocols\**" />
+    <Compile Remove="DTOs\TipoCarroDto.cs" />
+    <Compile Remove="Utils\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Enums\**" />
+    <EmbeddedResource Remove="Actions\**" />
+    <EmbeddedResource Remove="Entities\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <EmbeddedResource Remove="Protocols\**" />
+    <EmbeddedResource Remove="Utils\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Enums\**" />
+    <Content Remove="Actions\**" />
+    <Content Remove="Entities\**" />
+    <Content Remove="Models\**" />
+    <Content Remove="Protocols\**" />
+    <Content Remove="Utils\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Enums\**" />
+    <None Remove="Actions\**" />
+    <None Remove="Entities\**" />
+    <None Remove="Models\**" />
+    <None Remove="Protocols\**" />
+    <None Remove="Utils\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Contexts\" />
+  </ItemGroup>
+
+</Project>
