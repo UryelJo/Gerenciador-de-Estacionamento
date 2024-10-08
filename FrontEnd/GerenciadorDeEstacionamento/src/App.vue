@@ -1,12 +1,9 @@
 <script setup lang="ts">
-  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-  import { RouterLink, RouterView } from 'vue-router'
-  import ComponenteBotao from './components/ComponenteBotao.vue';
-  import { ref } from 'vue';
+import { RouterLink, RouterView, useRoute } from 'vue-router'
+import ComponenteBotao from './components/ComponenteBotao.vue';
+import { computed, ref } from 'vue';
 
-  let variavel = ref("")
-  let variavel2 = ref
-  let podeMostrarHelloWorld = ref(false);
+const barraDePesquisaAtiva = ref<boolean>(false);
 </script>
 
 <template>
@@ -17,28 +14,32 @@
         <p>Nunca vá de Frente</p>
       </div>
       <div class="menu">
-        <ComponenteBotao textoDoBotao="GERENCIAR CARROS"><font-awesome-icon icon="user" /></ComponenteBotao>
-        <ComponenteBotao texto-do-botao="GERENCIAR FUNCIONÁRIOS"><font-awesome-icon icon="magnifying-glass" /></ComponenteBotao>
-        <ComponenteBotao texto-do-botao="GERENCIAR PLANOS">❤️</ComponenteBotao>
-        <ComponenteBotao texto-do-botao="ESTACIONAMENTO">😘</ComponenteBotao>
+        <RouterLink to="/gerenciar-carros">
+          <ComponenteBotao texto-do-botao="GERENCIAR CARROS" @click = "barraDePesquisaAtiva = true"><i class="bi bi-car-front-fill"></i></ComponenteBotao>
+        </RouterLink>
+        <RouterLink to="/gerenciar-funcionarios" active-class="active">
+          <ComponenteBotao texto-do-botao="GERENCIAR FUNCIONÁRIOS" @click = "barraDePesquisaAtiva = true"><i class="bi bi-people-fill"></i></ComponenteBotao>
+        </RouterLink>
+        <ComponenteBotao texto-do-botao="GERENCIAR PLANOS"><i class="bi bi-list-check"></i></ComponenteBotao>
+        <ComponenteBotao texto-do-botao="ESTACIONAMENTO"><i class="bi bi-p-square-fill"></i></ComponenteBotao>
       </div>
     </aside>
 
     <main class="main-content">
-      <header>
-        
-        <input type="text" placeholder="Pesquisar..." />
+      <header v-if="barraDePesquisaAtiva">
+        <div class="barra-de-pesquisa">
+          <label for="inputDePesquisa" class="bi bi-search" style="margin-left: 4px; font-size: 25px; cursor: pointer;"></label>
+          <input id="inputDePesquisa" type="text" placeholder="Pesquisar..." />
+        </div>
       </header>
-      <section class="content">
+      <section>
+        <router-view />
       </section>
     </main>
   </div>
 </template>
 
 <style scoped>
-/* Estilos de layout geral */
-
-
 /* Sidebar */
 .sidebar {
   width: 357px;
@@ -50,10 +51,14 @@
   flex-direction: column;
   align-items: center;
 }
-
 .logo {
   text-align: center;
   margin-bottom: 20px;
+  color: black;
+  border-radius: 5px;
+  border: 0.5px solid black;
+  padding: 20px 60px 20px 60px;
+  background-color: #888888;
 }
 
 .menu {
@@ -62,7 +67,6 @@
   gap: 10px;
   width: 100%;
 }
-
 /* Main content */
 .main-content {
   padding-top: 20px;
@@ -70,26 +74,33 @@
   height: 100vh;
 }
 
+.barra-de-pesquisa{
+  width: 100%;
+  font-size: 20px;
+  color: black;
+  display: flex;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #888888;
+  padding-left: 10px;
+  box-shadow: 2px 2px 2px 2px #888888;
+  border: 0.5px solid black;
+  cursor: pointer;
+}
+
 header {
   background-color: #d1d1d1;
   padding: 15px;
-  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  width: 945px;
 }
 
 input[type="text"] {
-  width: 50%;
+  width: 95%;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
 }
 
-.content {
-  margin-top: 20px;
-}
-
-header{
-  width: 1000px;
-
-}
 </style>
