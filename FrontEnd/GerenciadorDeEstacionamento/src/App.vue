@@ -1,85 +1,95 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+  import { RouterLink, RouterView } from 'vue-router'
+  import ComponenteBotao from './components/ComponenteBotao.vue';
+  import { ref } from 'vue';
+
+  let variavel = ref("")
+  let variavel2 = ref
+  let podeMostrarHelloWorld = ref(false);
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <div id="app">
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>VAIDERÉ.so</h1>
+        <p>Nunca vá de Frente</p>
+      </div>
+      <div class="menu">
+        <ComponenteBotao textoDoBotao="GERENCIAR CARROS"><font-awesome-icon icon="user" /></ComponenteBotao>
+        <ComponenteBotao texto-do-botao="GERENCIAR FUNCIONÁRIOS"><font-awesome-icon icon="magnifying-glass" /></ComponenteBotao>
+        <ComponenteBotao texto-do-botao="GERENCIAR PLANOS">❤️</ComponenteBotao>
+        <ComponenteBotao texto-do-botao="ESTACIONAMENTO">😘</ComponenteBotao>
+      </div>
+    </aside>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+    <main class="main-content">
+      <header>
+        
+        <input type="text" placeholder="Pesquisar..." />
+      </header>
+      <section class="content">
+      </section>
+    </main>
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+/* Estilos de layout geral */
+
+
+/* Sidebar */
+.sidebar {
+  width: 357px;
+  height: 100vh;
+  background-color: #d1d1d1;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
   text-align: center;
-  margin-top: 2rem;
+  margin-bottom: 20px;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+/* Main content */
+.main-content {
+  padding-top: 20px;
+  box-sizing: border-box;
+  height: 100vh;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+header {
+  background-color: #d1d1d1;
+  padding: 15px;
+  box-sizing: border-box;
 }
 
-nav a:first-of-type {
-  border: 0;
+input[type="text"] {
+  width: 50%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+.content {
+  margin-top: 20px;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+header{
+  width: 1000px;
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
 }
 </style>
