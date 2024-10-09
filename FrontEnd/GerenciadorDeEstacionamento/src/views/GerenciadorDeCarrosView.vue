@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import ComponenteTabela from '@/components/ComponenteTabela.vue';
-import { Pessoa } from '@/models/Pessoa';
 import axios from 'axios';
-import { ref } from 'vue';
 
 axios.get('http://localhost:3000/pessoas').then((response) => {
     console.log(response.data);

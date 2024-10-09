@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router'
 import ComponenteBotao from './components/ComponenteBotao.vue';
-import { computed, ref } from 'vue';
+import {ref } from 'vue';
 
 const barraDePesquisaAtiva = ref<boolean>(false);
 </script>
