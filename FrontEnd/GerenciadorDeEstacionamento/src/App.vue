@@ -9,10 +9,12 @@ const barraDePesquisaAtiva = ref<boolean>(false);
 <template>
   <div id="app">
     <aside class="sidebar">
-      <div class="logo">
-        <h1>VAIDERÉ.so</h1>
-        <p>Nunca vá de Frente</p>
-      </div>
+      <router-link to="/">
+        <div class="logo" @click="barraDePesquisaAtiva = false">
+          <h1>VAIDERÉ.so</h1>
+          <p>Nunca vá de Frente</p>
+        </div>
+      </router-link>
       <div class="menu">
         <RouterLink to="/gerenciar-carros">
           <ComponenteBotao texto-do-botao="GERENCIAR CARROS" @click = "barraDePesquisaAtiva = true"><i class="bi bi-car-front-fill"></i></ComponenteBotao>
@@ -36,7 +38,7 @@ const barraDePesquisaAtiva = ref<boolean>(false);
           <input id="inputDePesquisa" type="text" placeholder="Pesquisar..." />
         </div>
       </header>
-      <section>
+      <section class="content">
         <router-view />
       </section>
     </main>
@@ -93,9 +95,16 @@ const barraDePesquisaAtiva = ref<boolean>(false);
   cursor: pointer;
 }
 
+.content{
+  width: 945px;
+}
+
 a{
   text-decoration: none;
-  color: black;
+}
+
+a:hover{
+  background-color: transparent;
 }
 
 header {
