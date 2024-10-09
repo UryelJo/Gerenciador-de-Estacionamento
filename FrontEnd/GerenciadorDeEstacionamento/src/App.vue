@@ -46,7 +46,13 @@ const barraDePesquisaAtiva = ref<boolean>(false);
 </template>
 
 <style scoped>
-/* Sidebar */
+
+#app {
+  display: flex;
+  padding: 0;
+  width: 100%;
+}
+
 .sidebar {
   width: 357px;
   height: 100vh;
@@ -96,7 +102,8 @@ const barraDePesquisaAtiva = ref<boolean>(false);
 }
 
 .content{
-  width: 945px;
+  width: 100%;
+  height: 100%;
 }
 
 a{

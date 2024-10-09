@@ -1,3 +1,7 @@
+<script setup lang="ts"></script>
+
 <template>
-    almir
+    <div style="height: 100%; color: black; background-color: aliceblue;">Uryel</div>
 </template>
+
+<style></style>
