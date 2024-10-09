@@ -20,8 +20,12 @@ const barraDePesquisaAtiva = ref<boolean>(false);
         <RouterLink to="/gerenciar-funcionarios" active-class="active">
           <ComponenteBotao texto-do-botao="GERENCIAR FUNCIONÁRIOS" @click = "barraDePesquisaAtiva = true"><i class="bi bi-people-fill"></i></ComponenteBotao>
         </RouterLink>
-        <ComponenteBotao texto-do-botao="GERENCIAR PLANOS"><i class="bi bi-list-check"></i></ComponenteBotao>
-        <ComponenteBotao texto-do-botao="ESTACIONAMENTO"><i class="bi bi-p-square-fill"></i></ComponenteBotao>
+        <RouterLink to="/gerenciar-planos">
+          <ComponenteBotao texto-do-botao="GERENCIAR PLANOS" @click = "barraDePesquisaAtiva = true"><i class="bi bi-list-check"></i></ComponenteBotao>
+        </RouterLink>
+        <RouterLink to="/gerenciar-estacionamento">
+          <ComponenteBotao texto-do-botao="GERENCIAR ESTACIONAMENTO" @click = "barraDePesquisaAtiva = true"><i class="bi bi-p-square-fill"></i></ComponenteBotao>
+        </RouterLink>
       </div>
     </aside>
 
@@ -87,6 +91,11 @@ const barraDePesquisaAtiva = ref<boolean>(false);
   box-shadow: 2px 2px 2px 2px #888888;
   border: 0.5px solid black;
   cursor: pointer;
+}
+
+a{
+  text-decoration: none;
+  color: black;
 }
 
 header {

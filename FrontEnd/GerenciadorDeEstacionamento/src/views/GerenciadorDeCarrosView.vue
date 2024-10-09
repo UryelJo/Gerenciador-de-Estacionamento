@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import ComponenteTabela from '@/components/ComponenteTabela.vue';
 import { Pessoa } from '@/models/Pessoa';
+import axios from 'axios';
 import { ref } from 'vue';
 
-const uryel = ref<Pessoa[]>([
-  new Pessoa(1, "Uryel", "", 12)
-])
+axios.get('http://localhost:3000/pessoas').then((response) => {
+    console.log(response.data);
+});
+
 </script>
 
 <template>
     <div class="teste">
         <h1>Gerenciador de Carros</h1>
-        <ComponenteTabela :lista-de-objetos="uryel" :headers="['almir', 'uryel', 'bola', 'francisco']" :tamanho-da-tabela='100' ></ComponenteTabela>
+        <ComponenteTabela :lista-de-objetos="[]" :headers="['almir', 'uryel', 'bola', 'francisco']" :tamanho-da-tabela='100' ></ComponenteTabela>
     </div>
 </template>
 

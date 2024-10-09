@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^3.0.8",
+    "axios": "^1.7.7",
     "bootstrap-icons": "^1.11.3",
     "bootstrap-icons-vue": "^1.11.3",
     "vue": "^3.4.29",
