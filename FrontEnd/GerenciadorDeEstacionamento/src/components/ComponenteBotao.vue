@@ -20,7 +20,7 @@
     justify-content: right;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     display: flex;
     box-shadow: 2px 2px 2px 2px #888888;
     text-shadow: rgb(0, 0, 0, 40%) 2px 3px 4px ;
@@ -40,7 +40,7 @@
 
 .botao:hover{
     background-color: #bebebe;
-    font-size: large;
+    font-size: 16px;
 }
 .botao:hover>.icone{
     font-size: 35px;
