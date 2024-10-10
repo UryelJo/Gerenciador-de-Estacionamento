@@ -11,7 +11,7 @@ axios.get('http://localhost:3000/pessoas').then((response) => {
 <template>
     <div class="teste">
         <h1>Gerenciador de Carros</h1>
-        <ComponenteTabela :lista-de-objetos="[]" :headers="['almir', 'uryel', 'bola', 'francisco']" :tamanho-da-tabela='100' ></ComponenteTabela>
+        <ComponenteTabela :lista-de-objetos="[]" :headers="['almir', 'uryel', 'bola', 'almir', 'uryel', 'bola']" :tamanho-da-tabela='100' ></ComponenteTabela>
     </div>
 </template>
 

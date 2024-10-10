@@ -15,35 +15,36 @@
 
 <style>
 .botao{
-    background-color: #fff;
-    align-items: center;
-    justify-content: right;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    display: flex;
-    box-shadow: 2px 2px 2px 2px #888888;
-    text-shadow: rgb(0, 0, 0, 40%) 2px 3px 4px ;
-    border-radius: 5px;
     width: 100%;
-    padding: 15px;
-    height: 75px;
+    border: none;
+    display: flex;
+    padding: 7px;
+    font-size: 14px;
+    gap: 15px;
+    cursor: pointer;
     transition: 0.2s;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: left;
+    background-color: #9196d800;
+    color: white;
+    text-shadow: rgb(0, 0, 0, 40%) 2px 3px 4px;
+    border: 1px solid #ffffff00;
 }
-
 .icone{
-    position: absolute;
-    padding-right: 245px;
-    font-size: 30px;
+    font-size: 25px;
     transition: 0.2s;
 }
 
 .botao:hover{
-    background-color: #bebebe;
-    font-size: 16px;
+    background-color: #804bc5;
+    box-shadow: inset 3px 3px 3px 0px #ffffff25,
+                inset -3px -3px 3px 0px #00000025;
+    border: 1px solid #ffffff25;
 }
+
+
 .botao:hover>.icone{
-    font-size: 35px;
     text-shadow: 1px 1px 2px purple, 0 0 1em blue, 0 0 0.2em blueviolet;
 }
 </style>

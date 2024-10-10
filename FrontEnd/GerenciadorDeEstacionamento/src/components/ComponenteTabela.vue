@@ -1,8 +1,8 @@
 <script setup lang="ts">
     defineProps<{
-        listaDeObjetos: Object[];
         headers: string[];
         tamanhoDaTabela: number;
+        listaDeObjetos: Object[];
     }>()
 </script>
 
@@ -25,7 +25,8 @@
 </template>
 
 <style>
-th , td {
+
+th,td {
     padding: 10px;
     border: 1px solid #ccc;
 }

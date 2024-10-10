@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-const nomeDoUsuario = 'Uryel Jó de Lucca Araujo de Oliveira';
+const nomeDoUsuario = 'Usuario';
 </script>
 
 <template>
@@ -9,11 +9,13 @@ const nomeDoUsuario = 'Uryel Jó de Lucca Araujo de Oliveira';
 
 <style>
 .header {
-    background-color: #f1f1f1;
-    text-align: center;
+    top: 50%;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    color: black;
+    color: rgb(255, 255, 255);
     width: 100%;
+    font-size: 40px;
     height: 100%;
 }
 
