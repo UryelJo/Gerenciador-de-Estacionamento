@@ -13,12 +13,22 @@ const router = createRouter({
     {
       path: '/gerenciar-carros',
       name: 'tela de gerenciamento de carros',
-      component: () => import('../views/GerenciadorDeCarrosView.vue')
+      component: () => import('../views/GerenciadorDeCarros.vue')
     },
     {
       path: '/gerenciar-funcionarios',
       name: 'tela de gerenciamento de funcionarios',
       component: () => import('../views/GerenciadorDeFuncionarios.vue')
+    },
+    {
+      path: '/gerenciar-planos',
+      name: 'tela de gerenciamento de planos',
+      component: () => import('../views/GerenciadorDePlanos.vue')
+    },
+    {
+      path: '/gerenciar-estacionamento',
+      name: 'tela de gerenciamento de estacionamento',
+      component: () => import('../views/GerenciarEstacionamento.vue')
     }
   ]
 })
