@@ -7,9 +7,7 @@ import { TipoCarroModel } from '@/models/TipoCarro/TipoCarroModel';
 import axios from 'axios';
 import { ref } from 'vue';
 
-const listaDeCarros = ref<CarroInfos[]>([new CarroInfos('Civic 2.0', 2021, 4, 'modeloMotor', 'AYY-2618', 'cor', new TipoCarroModel(), new CarroModel())]);
-
-axios.get('http://26.25.84.57:44307/listar-todos-os-carros').then((response) => {
+axios.get('https://localhost:44307/listar-todos-os-carros').then((response) => {
     console.log(response.data);
 });
 

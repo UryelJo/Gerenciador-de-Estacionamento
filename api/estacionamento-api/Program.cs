@@ -11,10 +11,24 @@ using Projeto_Estacionamento.Services.Motorista;
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyMethod();
+        });
+});
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
 
 var configuration = builder.Configuration;
 var connectionString = configuration.GetConnectionString("PostgresConnectionString");
@@ -40,7 +54,6 @@ builder.Services.AddScoped<IGuardaService, GuardaService>();
 //SERVIÇOS ================================================================|
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -49,6 +62,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAllOrigins");
 
 app.UseAuthorization();
 
