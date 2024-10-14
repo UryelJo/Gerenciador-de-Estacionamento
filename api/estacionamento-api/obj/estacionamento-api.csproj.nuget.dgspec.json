@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Documents\\Works\\gerenciador-de-estacionamento\\Gerenciador-de-Estacionamento\\api\\estacionamento-api\\estacionamento-api.csproj": {}
+    "C:\\Users\\user\\Documents\\Works\\Gerenciador-de-Estacionamento\\api\\estacionamento-api\\estacionamento-api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Documents\\Works\\gerenciador-de-estacionamento\\Gerenciador-de-Estacionamento\\api\\estacionamento-api\\estacionamento-api.csproj": {
+    "C:\\Users\\user\\Documents\\Works\\Gerenciador-de-Estacionamento\\api\\estacionamento-api\\estacionamento-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Documents\\Works\\gerenciador-de-estacionamento\\Gerenciador-de-Estacionamento\\api\\estacionamento-api\\estacionamento-api.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Documents\\Works\\Gerenciador-de-Estacionamento\\api\\estacionamento-api\\estacionamento-api.csproj",
         "projectName": "estacionamento-api",
-        "projectPath": "C:\\Users\\user\\Documents\\Works\\gerenciador-de-estacionamento\\Gerenciador-de-Estacionamento\\api\\estacionamento-api\\estacionamento-api.csproj",
+        "projectPath": "C:\\Users\\user\\Documents\\Works\\Gerenciador-de-Estacionamento\\api\\estacionamento-api\\estacionamento-api.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Documents\\Works\\gerenciador-de-estacionamento\\Gerenciador-de-Estacionamento\\api\\estacionamento-api\\obj\\",
+        "outputPath": "C:\\Users\\user\\Documents\\Works\\Gerenciador-de-Estacionamento\\api\\estacionamento-api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
