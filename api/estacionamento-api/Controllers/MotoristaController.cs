@@ -15,6 +15,7 @@ public class MotoristaController : Controller
         this._motoristaService = motoristaService;
     }
 
+    [HttpGet("/listar-todos-os-motoristas")]
     public async Task<List<MotoristaDTO>> ListarTodosOsMotoristas()
     {
         return await this._motoristaService.ListarTodosOsMotoristas();

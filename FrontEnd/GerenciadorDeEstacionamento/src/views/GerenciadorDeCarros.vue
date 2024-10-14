@@ -2,7 +2,7 @@
 import ComponenteTabela from '@/components/ComponenteTabela.vue';
 import axios from 'axios';
 
-axios.get('http://localhost:3000/pessoas').then((response) => {
+axios.get('https://localhost:44307/listar-todos-os-carros').then((response) => {
     console.log(response.data);
 });
 
