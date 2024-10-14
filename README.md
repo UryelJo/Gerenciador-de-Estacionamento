@@ -43,6 +43,33 @@ const programa: Informações = {
 </div>
 
 ```sql
+CREATE TABLE public.marca (
+    id INTEGER PRIMARY KEY,
+    nome VARCHAR(25),
+    descricao VARCHAR(50)
+);
+
+CREATE TABLE public.tipo_carro (
+    id INTEGER PRIMARY KEY,
+    descricao VARCHAR(50)
+);
+
+CREATE TABLE public.carro (
+    id INTEGER PRIMARY KEY,
+    nome VARCHAR(50),
+    ano INTEGER,
+    quantidade_de_portas INTEGER,
+    modelo_do_motor VARCHAR(25),
+    placa VARCHAR(10),
+    cor VARCHAR(15),
+    id_tipo_carro INTEGER,
+    id_marca INTEGER,
+
+    CONSTRAINT carro_tipo_fk FOREIGN KEY (id_tipo_carro) REFERENCES public.tipo_carro,
+    CONSTRAINT carro_marca_fk FOREIGN KEY (id_marca) REFERENCES public.marca
+);
+
+
 CREATE TABLE public.pessoa (
     id                 INT PRIMARY KEY,
     nome               VARCHAR(50),
