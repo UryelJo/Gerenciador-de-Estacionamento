@@ -143,7 +143,7 @@ h1{
   border-radius: 10px;
   justify-content: space-between;
   background-color: #282828;
-  box-shadow: 3px 0px 3px 0px #00000025;
+  box-shadow:  3px 0px 3px 0px #00000025;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -152,10 +152,11 @@ h1{
   transition: 0.2s;
   background-color: #282828;
   background-color: #804bc5;
-  box-shadow: inset 3px 3px 3px 0px #ffffff25,
-                inset -3px -3px 3px 0px #00000025;
+  box-shadow: inset 3px 3px 3px 0px red
+                inset -3px -3px 3px 0px red;
   border: 1px solid #ffffff25;
   box-shadow: 1px 0px 50px 0px #ffffff20;
+  
 }
 
 .content{
