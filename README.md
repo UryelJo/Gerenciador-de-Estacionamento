@@ -39,7 +39,7 @@ const programa: Informações = {
 
 <div align="center">
   <h2></h2>
-  <h3><img src="https://github.com/devicons/devicon/blob/master/icons/sqldeveloper/sqldeveloper-original.svg" width="25px">Esquema do Banco de dados<img src="https://github.com/devicons/devicon/blob/master/icons/sqldeveloper/sqldeveloper-original.svg" width="25px"> </h3>
+  <h3><img src="https://github.com/devicons/devicon/blob/master/icons/sqldeveloper/sqldeveloper-original.svg" width="25px"> Esquema do Banco de dados <img src="https://github.com/devicons/devicon/blob/master/icons/sqldeveloper/sqldeveloper-original.svg" width="25px"></h3>
 </div>
 
 ```sql
