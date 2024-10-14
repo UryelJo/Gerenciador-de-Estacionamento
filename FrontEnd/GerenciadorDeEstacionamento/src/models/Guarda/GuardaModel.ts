@@ -4,8 +4,8 @@ import type { PessoaModel } from "../Pessoa/PessoaModel";
 
 export class GuardaModel{
     id?: number;
-    id_pessoa?: PessoaModel;
+    idPessoa?: PessoaModel;
     estacionamento?: EstacionamentoModel;
     salario?: number;
-    horario_turno?: string;
+    horarioTurno?: string;
 }

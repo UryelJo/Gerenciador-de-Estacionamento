@@ -5,10 +5,10 @@ export class CarroModel{
     id?: number;
     nome?: string;
     ano?: number;
-    quantidade_de_portas?: number;
-    modelo_do_motor?: string;
+    quantidadeDePortas?: number;
+    modeloDoMotor?: string;
     placa?: string;
     cor?: string;
-    id_tipo_carro?: TipoCarroModel;
-    id_marca?: MarcaModel;
+    idTipoCarro?: TipoCarroModel;
+    idMarca?: MarcaModel;
 }
