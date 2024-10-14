@@ -1,4 +1,4 @@
-export class Endereco{
+export class EnderecoModel{
     id?: number;
     rua?: string;
     numero?: number;
