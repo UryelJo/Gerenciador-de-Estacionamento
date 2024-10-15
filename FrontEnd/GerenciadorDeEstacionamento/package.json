@@ -11,10 +11,11 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
-    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@primevue/themes": "^4.1.0",
     "axios": "^1.7.7",
     "bootstrap-icons": "^1.11.3",
     "bootstrap-icons-vue": "^1.11.3",
+    "primevue": "^4.1.0",
     "vue": "^3.4.29",
     "vue-router": "^4.4.5"
   },

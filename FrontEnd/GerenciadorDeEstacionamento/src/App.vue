@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import ComponenteBotao from './components/ComponenteBotao.vue';
 import {ref } from 'vue';
+import Button from 'primevue/button';
+import Drawer from 'primevue/drawer';
+import AutoComplete from 'primevue/autocomplete';
 
 const barraDePesquisaAtiva = ref<boolean>(false);
+const visivel = ref<boolean>(true);
 </script>
 
 <template>
   <div id="app">
-    <aside class="sidebar">
+    <Drawer v-model:visible="visivel" header="MENU">
       <router-link to="/">
         <div class="logo" @click="barraDePesquisaAtiva = false">
           <h1>VAIDERÉ.so</h1>
@@ -17,30 +20,22 @@ const barraDePesquisaAtiva = ref<boolean>(false);
       </router-link>
       <div class="menu">
         <RouterLink to="/gerenciar-carros">
-          <ComponenteBotao texto-do-botao="GERENCIAR CARROS" @click = "barraDePesquisaAtiva = true"><i class="bi bi-car-front-fill"></i></ComponenteBotao>
+          <Button label="GERENCIAR CARROS" icon="bi bi-car-front-fill" iconPos ="left" @click = "barraDePesquisaAtiva = true"/>
         </RouterLink>
         <RouterLink to="/gerenciar-funcionarios" active-class="active">
-          <ComponenteBotao texto-do-botao="GERENCIAR FUNCIONÁRIOS" @click = "barraDePesquisaAtiva = true"><i class="bi bi-people-fill"></i></ComponenteBotao>
+          <Button label="GERENCIAR FUNCIONÁRIOS" icon="bi bi-people-fill" iconPos ="left" @click = "barraDePesquisaAtiva = true"/>
         </RouterLink>
         <RouterLink to="/gerenciar-planos">
-          <ComponenteBotao texto-do-botao="GERENCIAR PLANOS" @click = "barraDePesquisaAtiva = true"><i class="bi bi-list-check"></i></ComponenteBotao>
+          <Button label="GERENCIAR PLANOS" icon="bi bi-list-check" iconPos ="left" @click = "barraDePesquisaAtiva = true"/>
         </RouterLink>
         <RouterLink to="/gerenciar-estacionamento">
-          <ComponenteBotao texto-do-botao="GERENCIAR ESTACIONAMENTO" @click = "barraDePesquisaAtiva = true"><i class="bi bi-p-square-fill"></i></ComponenteBotao>
+          <Button label="GERENCIAR ESTACIONAMENTO" icon="bi bi-p-square-fill" iconPos ="left" @click = "barraDePesquisaAtiva = true"/>
         </RouterLink>
       </div>
-    </aside>
+    </Drawer>
+    <Button icon="bi bi-list" @click="visivel = !visivel" style="position: absolute; top: 10px; left: 10px;"/>
 
     <main class="main-content">
-      <header v-if="barraDePesquisaAtiva">
-        <div class="barra-de-pesquisa">
-          <label for="inputDePesquisa" class="bi bi-search" style="
-          font-size: 25px;
-          cursor: pointer;
-          "></label>
-          <input id="inputDePesquisa" type="text" placeholder="Pesquisar..." class="input" />
-        </div>
-      </header>
       <section class="content">
         <router-view />
       </section>
@@ -93,7 +88,6 @@ const barraDePesquisaAtiva = ref<boolean>(false);
 }
 
 .input:focus{
-  border: inset 1px solid #ffffff25;
   outline: none;
 }
 
@@ -143,19 +137,16 @@ h1{
   border-radius: 10px;
   justify-content: space-between;
   background-color: #282828;
-  box-shadow:  3px 0px 3px 0px #00000025;
   cursor: pointer;
   transition: 0.2s;
 }
 
 .barra-de-pesquisa:hover{
   transition: 0.2s;
-  background-color: #282828;
   background-color: #804bc5;
-  box-shadow: inset 3px 3px 3px 0px red
-                inset -3px -3px 3px 0px red;
-  border: 1px solid #ffffff25;
-  box-shadow: 1px 0px 50px 0px #ffffff20;
+    box-shadow: inset 3px 3px 3px 0px #ffffff25,
+                inset -3px -3px 3px 0px #00000025;
+    border: 1px solid #ffffff25;
   
 }
 
