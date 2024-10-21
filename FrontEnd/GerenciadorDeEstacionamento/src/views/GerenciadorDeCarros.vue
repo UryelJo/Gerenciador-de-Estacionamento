@@ -7,11 +7,13 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import SplitButton from 'primevue/splitbutton';
 import Dialog from 'primevue/dialog';
-import { FilterMatchMode, FilterOperator } from '@primevue/core/api';
+import { FilterMatchMode } from '@primevue/core/api';
 import InputText from 'primevue/inputtext';
+import Button from 'primevue/button';
+import Tooltip from 'primevue/tooltip';
 
 let almir = ref<CarroInfos[]>([
-    new CarroInfos('Sedan V89', 2024, 4,'Camaro', '1234-1234', 'Vermelho', new TipoCarroModel(), new CarroModel()),
+    new CarroInfos('Camaro', 2024, 4,'Camaro', '1234-1234', 'Vermelho', new TipoCarroModel(), new CarroModel()),
     new CarroInfos('Sedan V789', 2024, 4,'Camaro', '1234-1234', 'Vermelho', new TipoCarroModel(), new CarroModel())
 ]);
 
@@ -23,9 +25,6 @@ const dialogVisivel = ref<boolean>(false);
 const carroExibido = ref<CarroInfos | null>(null);
 
 const conteudoSplitButton = (carro: CarroInfos) => [
-    { 
-        label: 'Ver Detalhes', icon: 'bi bi-eye', command: () => exibirDetalhes(carro) 
-    },
     { separator: true },
     { 
         label: 'Atualizar', icon: 'bi bi-arrow-clockwise', command: atualizar 
@@ -46,37 +45,42 @@ function atualizar() {
 </script>
 
 <template>
-    <Dialog v-model:visible="dialogVisivel" header="Detalhes do Carro Selecionado" modal closable resizable :baseZIndex="10000">
-        <p>Nome do Carro: {{ carroExibido?.nome }}</p>
+    <Dialog v-model:visible="dialogVisivel" header="Detalhes do Carro Selecionado" modal closable resizable :style="{ width: '700px' }"baseZIndex="10000" :draggable="true">
+        <p>Modelo do Carro: {{ carroExibido?.nome }}</p>
         <p>Ano de Lancamento: {{ carroExibido?.ano }}</p>
         <p>Quantidade de Portas: {{ carroExibido?.quantidadeDePortas }}</p>
-        <p>Modelo: {{ carroExibido?.modelo }}</p>
+        <p>Modelo do Motor: {{ carroExibido?.modeloDoMotor }}</p>
         <p>Placa: {{ carroExibido?.placa }}</p>
         <p>Cor: {{ carroExibido?.cor }}</p>
-        <p>Tipo de Carro: {{ carroExibido?.tipoCarro }}</p>
-        <p>Carro: {{ carroExibido?.carro }}</p>
+        <p>Tipo de Carro: {{ carroExibido?.idTipoCarro }}</p>
     </Dialog>
 
     <div class="tabela-de-carros">
         <DataTable v-model:filters="filters" :value="almir" paginator :rows="5">
             <template #header>
-                <div class="table-header">
-                    <InputText v-model="filters['global'].value" placeholder="Pesquisar por nome do carro" />
+                <div>
+                    <InputText v-tooltip.left="'Pesquisa carro pelo modelo'" v-model="filters['global'].value" placeholder="Pesquisar por modelo" class="input-pesquisa" />
                 </div>
             </template>
-            <Column field="nome" header="Nome do Carro"></Column>
+            <Column>
+                <template #body = "{data}" :v-tooltip="'Almir'" >
+                    <Button v-tooltip.left="'Exibir Detalhes'" icon="bi bi-eye" @click="exibirDetalhes(data)" text raised  />
+                </template>
+            </Column>
+            <Column field="nome" header="Modelo do Carro"></Column>
             <Column field="ano" header="Ano de Lançamento"></Column>
-            <Column field="placa" header="Placa"></Column>
+            <Column field="placa" header="Numeração da Placa"></Column>
+            <Column field="cor" header="Cor"></Column>
             <Column header="Ações"> 
                 <template #body="{ data }">
-                    <SplitButton :model="conteudoSplitButton(data)" size="small" severity="contrast" raised text class="split-button" />
+                    <SplitButton :model="conteudoSplitButton(data)" v-tooltip="'Mais Acões'" size="small" raised text class="split-button" />
                 </template>
             </Column>
         </DataTable>
     </div>
 </template>
 
-<style scoped>
+<style>
 .tabela-de-carros {
     display: flex;
     flex-direction: column;
@@ -85,12 +89,17 @@ function atualizar() {
     padding: 1rem;
 }
 
-.split-button > .p-button {
+.input-pesquisa{
+    width: 100%;
+}
+
+.split-button > .p-splitbutton-button {
     display: none;
 }
 
 .split-button > .p-button-icon-only {
     display: flex;
-    border-radius: 7px;
+    border-radius: 5px;
 }
+
 </style>
