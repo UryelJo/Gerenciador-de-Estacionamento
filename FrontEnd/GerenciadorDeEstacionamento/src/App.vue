@@ -3,36 +3,49 @@ import { RouterLink, RouterView } from 'vue-router'
 import {ref } from 'vue';
 import Button from 'primevue/button';
 import Drawer from 'primevue/drawer';
+import Dialog from 'primevue/dialog';
 
 const barraDePesquisaAtiva = ref<boolean>(false);
-const visivel = ref<boolean>(true);
+const visivel = ref<boolean>(false);
+const dialogEdicaoVisivel = ref<boolean>(false);
 </script>
 
 <template>
   <div id="app">
-    <Drawer v-model:visible="visivel" class="sidebar">
+
+    <Dialog v-model:visible="dialogEdicaoVisivel" header="Editar Informações" modal closable resizable :style="{ width: '700px' }" baseZIndex="10000" :draggable="false">
+      <p>Em construção</p>
+    </Dialog>
+
+
+    <Drawer v-model:visible="visivel" style="  background-color: rgba(39, 39, 42, 0.384); backdrop-filter: blur(5px); border: none;">
         <template #header>
           <router-link to="/">
-            <div class="logo" @click="barraDePesquisaAtiva = false">
+            <div class="logo" @click="barraDePesquisaAtiva = false" >
               <h1>VAIDERÉ.so</h1>
               <p>Nunca vá de Frente</p>
             </div>
           </router-link>
         </template>
         <div class="menu">
-          <RouterLink to="/gerenciar-carros">
-            <Button label="GERENCIAR CARROS" icon="bi bi-car-front-fill" iconPos ="left" text raised severity="secondary" @click = "barraDePesquisaAtiva = true"/>
+          <RouterLink to="/gerenciar-estacionamento">
+            <Button label="GERIR ESTACIONAMENTO" icon="bi bi-p-square-fill" iconPos ="left" severity="secondary" style="width: 100%; justify-content: left;"  />
           </RouterLink>
           <RouterLink to="/gerenciar-funcionarios">
-            <Button label="GERENCIAR FUNCIONÁRIOS" icon="bi bi-people-fill" iconPos ="left" text raised severity="secondary" @click = "barraDePesquisaAtiva = true"/>
+            <Button label="FUNCIONÁRIOS" icon="bi bi-people-fill" iconPos ="left" severity="secondary" style="width: 100%; justify-content: left;" />
           </RouterLink>
           <RouterLink to="/gerenciar-planos">
-            <Button label="GERENCIAR PLANOS" icon="bi bi-list-check" iconPos ="left" text raised severity="secondary" @click = "barraDePesquisaAtiva = true"/>
+            <Button label="PLANOS" icon="bi bi-list-check" iconPos ="left" severity="secondary" style="width: 100%; justify-content: left;" />
           </RouterLink>
-          <RouterLink to="/gerenciar-estacionamento">
-            <Button label="GERENCIAR ESTACIONAMENTO" icon="bi bi-p-square-fill" iconPos ="left" text raised severity="secondary" @click = "barraDePesquisaAtiva = true"/>
+          <RouterLink to="/gerenciar-carros">
+            <Button label="GERENCIAR CARROS" icon="bi bi-car-front-fill" iconPos ="left" severity="secondary" style="width: 100%; justify-content: left;" />
           </RouterLink>
         </div>
+        <template #footer>
+          <div class="menu">
+            <Button label="Editar Informações" @click="dialogEdicaoVisivel = true" icon="bi bi-pencil-square" iconPos ="left" style="width: 70%; font-size: 14px;" />
+          </div>
+        </template>
     </Drawer>
     <Button icon="bi bi-list" @click="visivel = !visivel" style="position: absolute; top: 10px; left: 10px;"/>
 
@@ -43,21 +56,18 @@ const visivel = ref<boolean>(true);
     </main>
   </div>
 </template>
-<style scoped>
+<style>
 
 #app {
   display: flex;
   padding: 0;
   width: 100%;
-}
-
-.p-drawer{
-  background-color: rgb(0, 0, 0) !important;
+  height: 100%;
 }
 
 .logo {
   text-align: center;
-  color: rgb(255, 255, 255);
+  color: white;
   transition: 0.2s;
 }
 
@@ -92,6 +102,8 @@ h1{
   box-sizing: border-box;
   flex: 1;
   display: flex;
+  height: 100%;
+  width: 100%;
   flex-direction: column;
 }
 

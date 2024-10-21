@@ -1,8 +1,9 @@
-import type { EnderecoModel } from "../Endereco/EnderecoModel";
+
 
 export class EstacionamentoModel{
     id?: number;
-    endereco?: EnderecoModel;
+    nome?: string;
+    endereco?: string;
     quantidadeVagasP?: number;
     quantidadeVagasG?: number;
 }

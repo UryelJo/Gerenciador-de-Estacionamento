@@ -10,7 +10,6 @@ import Dialog from 'primevue/dialog';
 import { FilterMatchMode } from '@primevue/core/api';
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
-import Tooltip from 'primevue/tooltip';
 
 let almir = ref<CarroInfos[]>([
     new CarroInfos('Camaro', 2024, 4,'Camaro', '1234-1234', 'Vermelho', new TipoCarroModel(), new CarroModel()),
@@ -55,6 +54,10 @@ function atualizar() {
         <p>Tipo de Carro: {{ carroExibido?.idTipoCarro }}</p>
     </Dialog>
 
+    <Dialog header="Cadastrar Novo Veiculo">
+
+    </Dialog>
+
     <div class="tabela-de-carros">
         <DataTable v-model:filters="filters" :value="almir" paginator :rows="5">
             <template #header>
@@ -68,7 +71,7 @@ function atualizar() {
                 </template>
             </Column>
             <Column field="nome" header="Modelo do Carro"></Column>
-            <Column field="ano" header="Ano de Lançamento"></Column>
+            <Column field="ano" header="Ano do Modelo"></Column>
             <Column field="placa" header="Numeração da Placa"></Column>
             <Column field="cor" header="Cor"></Column>
             <Column header="Ações"> 
