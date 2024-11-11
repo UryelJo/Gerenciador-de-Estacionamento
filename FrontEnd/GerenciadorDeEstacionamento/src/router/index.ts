@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import PaginaInicial from '@/views/Login.vue';
+import PaginaInicial from '@/views/Login/Login.vue';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { inject } from 'vue';
 
@@ -26,25 +26,25 @@ const router = createRouter({
     {
       path:'/gerenciar-carros' ,
       name: 'tela de gerenciamento de carros',
-      component: () =>  import('../views/GerenciadorDeCarros.vue'), 
+      component: () =>  import('../views/GerenciadorDeCarros/GerenciadorDeCarros.vue'), 
       meta: { requiresAuth: true }
     },
     {
       path:'/gerenciar-funcionarios',
       name: 'tela de gerenciamento de funcionarios',
-      component: () =>  import('../views/GerenciadorDeFuncionarios.vue'),
+      component: () =>  import('../views/GerenciadorDeFuncionarios/GerenciadorDeFuncionarios.vue'),
       meta: { requiresAuth: true }
     },
     {
       path: '/gerenciar-planos',
       name: 'tela de gerenciamento de planos',
-      component: () => import('../views/GerenciadorDePlanos.vue'),
+      component: () => import('../views/GerenciadorDePlanos/GerenciadorDePlanos.vue'),
       meta: { requiresAuth: true }
     },
     {
       path:  '/gerenciar-estacionamento' ,
       name: 'tela de gerenciamento de estacionamento',
-      component: () => import('../views/GerenciarEstacionamento.vue'),
+      component: () => import('../views/GerenciarEstacionamento/GerenciarEstacionamento.vue'),
       meta: { requiresAuth: true }
     }
   ]
