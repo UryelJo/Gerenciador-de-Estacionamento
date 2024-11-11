@@ -1,54 +1,54 @@
 <script setup lang="ts">
-import { CarroInfos } from '@/models/Carro/CarroInfos';
-import { CarroModel } from '@/models/Carro/CarroModel';
-import { TipoCarroModel } from '@/models/TipoCarro/TipoCarroModel';
-import { ref } from 'vue';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import SplitButton from 'primevue/splitbutton';
-import Dialog from 'primevue/dialog';
-import { FilterMatchMode } from '@primevue/core/api';
-import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
-import { EstacionamentoModel } from '@/models/Estacionamento/EstacionamentoModel';
-import { EstacionamentoInfos } from '@/models/Estacionamento/EstacionamentoInfos';
-import { PessoaModel } from '@/models/Pessoa/PessoaModel';
-import { GuardaInfos } from '@/models/Guarda/GuardaInfos';
 import Avatar from 'primevue/avatar';
+import { ref } from 'vue';
+import { FilterMatchMode } from '@primevue/core/api';
+import { Registro } from '@/models/Registro';
+import { Estacionamento } from '@/models/Estacionamento';
+import { Pessoa } from '@/models/Pessoa';
+import { Plano } from '@/models/Plano';
+import { Motorista } from '@/models/Motorista';
+import { Carro } from '@/models/Carro';
+import { TipoCarro } from '@/models/TipoCarro';
+import { Marca } from '@/models/Marca';
+import { Guarda } from '@/models/Guarda';
 
-let registrosDeEntrada = ref<CarroInfos[]>([
-    new CarroInfos('Camaro', 2024, 4,'Camaro', '1234-1234', 'Vermelho', new TipoCarroModel(), new CarroModel()),
-    new CarroInfos('Sedan V789', 2024, 4,'Camaro', '1234-1234', 'Vermelho', new TipoCarroModel(), new CarroModel()),
-    new CarroInfos('Camaro', 2024, 4,'Camaro', '1234-1234', 'Vermelho', new TipoCarroModel(), new CarroModel()),
-    new CarroInfos('Sedan V789', 2024, 4,'Camaro', '1234-1234', 'Vermelho', new TipoCarroModel(), new CarroModel()),
-    new CarroInfos('Camaro', 2024, 4,'Camaro', '1234-1234', 'Vermelho', new TipoCarroModel(), new CarroModel()),
-    new CarroInfos('Sedan V789', 2024, 4,'Camaro', '1234-1234', 'Vermelho', new TipoCarroModel(), new CarroModel()),
-    new CarroInfos('Camaro', 2024, 4,'Camaro', '1234-1234', 'Vermelho', new TipoCarroModel(), new CarroModel()),
-    new CarroInfos('Sedan V789', 2024, 4,'Camaro', '1234-1234', 'Vermelho', new TipoCarroModel(), new CarroModel()),
+let carro = new Carro(1, "Fiat", "2029", 4, "v12", "123456", "verde", new TipoCarro(1, "Sedan"), new Marca(1, "Fiat", "Marca ai"));
+const pessoa = new Pessoa(1, 'Uryel Jó de Lucca Araujo de Oliveira', '12345678910', 20, new Plano(1, 'Premium', 23, 2500, 'P'));
+const informacoesEstacionamento = ref<Estacionamento>(
+    new Estacionamento(1, 'Fundo de Quintal', 'Rua Sim 1234', 20, 15));
+
+let registrosDeEntrada = ref<Registro[]>([
+    new Registro(1, new Motorista(1, pessoa, true), carro, '17:50', '', informacoesEstacionamento.value, 'Grande', '2021-10-10'),
+    new Registro(2, new Motorista(1, pessoa, true), carro, '18:50', '', informacoesEstacionamento.value, 'Grande', '2021-10-10'),
+    new Registro(3, new Motorista(1, pessoa, true), carro, '19:50', '', informacoesEstacionamento.value, 'Grande', '2021-10-10'),
+    new Registro(4, new Motorista(1, pessoa, true), carro, '20:50', '', informacoesEstacionamento.value, 'Grande', '2021-10-10'),
+    new Registro(5, new Motorista(1, pessoa, true), carro, '21:50', '', informacoesEstacionamento.value, 'Grande', '2021-10-10'),
+    new Registro(6, new Motorista(1, pessoa, true), carro, '22:50', '', informacoesEstacionamento.value, 'Grande', '2021-10-10'),
 ]);
 
-const informacoesEstacionamento = ref<EstacionamentoModel>(
-    new EstacionamentoInfos('Fundo de Quintal', 'Rua dos Bobos', 5, 7));
-
-const pessoa = new PessoaModel();
-pessoa.nome = 'Almir';
-pessoa.cpf = '123.456.789-00';
-pessoa.idade = 23;
-const guardinhas = ref(new GuardaInfos(pessoa, new EstacionamentoModel(), 2500,'Sim' ));
+let guardinha1 = new Guarda(1, pessoa, 2500);
+let guardinha2 = new Guarda(2, pessoa, 20);
 
 const filters = ref({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS }
 });
 
 const dialogVisivel = ref<boolean>(false);
-const carroExibido = ref<CarroInfos | null>(null);
+const registroExibido = ref<Registro | null>(null);
+
 let quantidadeVagasPequenasDisponiveis = 0;
 let quantidadeVagasGrandesDisponiveis = 0;
 let quantidadeVagasGrandesOcupadas = 0;
 let quantidadeVagasPequenasOcupadas = 0;
 
-const conteudoSplitButton = (carro: CarroInfos) => [
+const chegouLimiteDeVagas = ref<boolean>(false);
+
+const conteudoSplitButton = (registro: Registro) => [
     { separator: true },
     { 
         label: 'Atualizar', icon: 'bi bi-arrow-clockwise', command: atualizar 
@@ -58,9 +58,28 @@ const conteudoSplitButton = (carro: CarroInfos) => [
     }
 ];
 
-function exibirDetalhes(carro: CarroInfos) {
-    carroExibido.value = carro;
+function exibirDetalhes(registro: Registro) {
+    registroExibido.value = registro;
     dialogVisivel.value = true;
+}
+
+function atualizarStatusVagas() {
+    quantidadeVagasGrandesDisponiveis = informacoesEstacionamento.value.quantidadeVagasG;
+    quantidadeVagasPequenasDisponiveis = informacoesEstacionamento.value.quantidadeVagasP;
+
+    registrosDeEntrada.value.forEach(registro => {
+        if (registro.tipoVagaOcupada === 'Pequena') {
+            quantidadeVagasPequenasOcupadas++;
+            quantidadeVagasPequenasDisponiveis--;
+        } else {
+            quantidadeVagasGrandesOcupadas++;
+            quantidadeVagasGrandesDisponiveis--;
+        }
+    });
+
+    if (quantidadeVagasPequenasDisponiveis === 0 && quantidadeVagasGrandesDisponiveis === 0) {
+        chegouLimiteDeVagas.value = true;
+    }
 }
 
 function atualizar() {
@@ -72,23 +91,20 @@ function atualizar() {
     <div class="header-pagina"><b>Estacionamento {{informacoesEstacionamento.nome}}</b></div>
     <div class="conteudo">
         <div class="conteudo-direita">
-            <DataTable v-model:filters="filters" :value="registrosDeEntrada" paginator :rows="5">
+            <DataTable v-model:filters="filters" stripedRows :value="registrosDeEntrada" paginator :rows="4">
                 <template #header>
                     <div class="header-tabela">
                         <h2>Registros Ativos</h2>
-                        <Button label="Novo Registro" icon="bi bi-plus" @click="atualizar" text raised />
+                        <Button label="Novo Registro" icon="bi bi-plus" @click="atualizar" text raised :disabled="chegouLimiteDeVagas" />
                     </div>
                 </template>
-                <!-- <Column>
-                    <template #body = "{data}" :v-tooltip="'Almir'" >
-                        <Button v-tooltip.left="'Exibir Detalhes'" icon="bi bi-eye" @click="exibirDetalhes(data)" text raised  />
-                    </template>
-                </Column> -->
-                <Column field="nome" header="Modelo do Carro"></Column>
-                <!-- <Column field="ano" header="Ano do Modelo"></Column>
-                <Column field="placa" header="Numeração da Placa"></Column>
-                <Column field="cor" header="Cor"></Column> -->
-                <Column header="Ações"> 
+                <Column style="text-align: center;" field="motorista.pessoa.nome" header="Nome Cliente"></Column>
+                <Column style="text-align: center;" field="carro.modelo" header="Modelo do Carro"></Column>
+                <Column style="text-align: center;" field="carro.placa" header="Placa do Carro"></Column>
+                <Column style="text-align: center;" field="horarioInicio" header="Horario Entrada"></Column>
+                <Column style="text-align: center;" field="motorista.pessoa.plano.nivelDoPlano" header="Plano"></Column>
+                <Column style="text-align: center;" field="tipoVagaOcupada" header="Vaga Ocupada"></Column>
+                <Column > 
                     <template #body="{ data }">
                         <SplitButton :model="conteudoSplitButton(data)" v-tooltip="'Mais Acões'" size="small" raised text class="split-button" />
                     </template>
@@ -103,9 +119,9 @@ function atualizar() {
                     <template #title>Guarda 1  <Avatar icon="bi bi-shield-plus" style="background-color: #ece9fc; color: #2a1261"/> </template>
                         <template #content>
                         <p >
-                            <b>Nome:</b> Uryel Jó de Lucca Araujo de Oliveira <br>
-                            <b>CPF:</b>  <br>
-                            <b>Idade:</b> <br>
+                            <b>Nome:</b> {{guardinha1.pessoa.nome}} <br>
+                            <b>CPF:</b> {{guardinha1.pessoa.cpf}}  <br>
+                            <b>Idade:</b> {{ guardinha1.pessoa.idade }} <br>
                         </p>
                     </template>
                 </Card>
@@ -113,22 +129,22 @@ function atualizar() {
                     <template #title>Guarda 2  <Avatar icon="bi bi-shield-plus" style="background-color: #ece9fc; color: #2a1261"/></template>
                         <template #content>
                         <p class="Card-Guardinha"  >
-                            <b>Nome:</b> Uryel Jó de Lucca Araujo de Oliveira <br>
-                            <b>CPF:</b>  <br>
-                            <b>Idade:</b>  <br>
+                            <b>Nome:</b> {{guardinha2.pessoa.nome}} <br>
+                            <b>CPF:</b> {{guardinha2.pessoa.cpf}}  <br>
+                            <b>Idade:</b> {{ guardinha2.pessoa.idade }} <br>
                         </p>
                     </template>
                 </Card>
             </div>
-            <div class="outras-infos">
+            <div class="outras-infos" :v-model="atualizarStatusVagas()">
                 <div class="texto-quantidade">
-                    <b>Quantidade de vagas Pequenas disponíveis: {{ quantidadeVagasPequenasDisponiveis }}</b><br>
-                    <b>Quantidade de vagas Grandes disponíveis: {{ quantidadeVagasGrandesDisponiveis }}</b>
+                    <b>Quantidade de vagas Pequenas disponíveis: {{quantidadeVagasPequenasDisponiveis}}</b><br>
+                    <b>Quantidade de vagas Grandes disponíveis: {{quantidadeVagasGrandesDisponiveis}}</b>
                 </div>
                 <br>
                 <div class="texto-quantidade"> 
-                    <b>Quantidade de vagas Pequenas ocupadas: {{ quantidadeVagasPequenasOcupadas }}</b><br>
-                    <b>Quantidade de vagas Grandes ocupadas: {{ quantidadeVagasGrandesOcupadas }}</b>
+                    <b>Quantidade de vagas Pequenas ocupadas: {{quantidadeVagasPequenasOcupadas}}</b><br>
+                    <b>Quantidade de vagas Grandes ocupadas: {{quantidadeVagasGrandesOcupadas}}</b>
                 </div>
             </div>
         </div>
@@ -165,8 +181,7 @@ function atualizar() {
 .header-pagina{
     display: flex;
     justify-content: center;
-    font-size: 23px;
-    padding: 1rem;
+    font-size: 30px;
     color: white;
     background-color: #1f1f1f;
     align-items: center;
@@ -242,6 +257,7 @@ function atualizar() {
 /* .input-pesquisa{
     width: 100%;
 }
+*/
 
 .split-button > .p-splitbutton-button {
     display: none;
@@ -250,6 +266,6 @@ function atualizar() {
 .split-button > .p-button-icon-only {
     display: flex;
     border-radius: 5px;
-} */
+}
 
 </style>

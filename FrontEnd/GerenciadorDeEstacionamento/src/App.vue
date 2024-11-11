@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import {ref } from 'vue';
+import {RouterLink, RouterView} from 'vue-router'
+import {inject, ref} from 'vue';
 import Button from 'primevue/button';
 import Drawer from 'primevue/drawer';
 import Dialog from 'primevue/dialog';
@@ -8,6 +8,8 @@ import Dialog from 'primevue/dialog';
 const barraDePesquisaAtiva = ref<boolean>(false);
 const visivel = ref<boolean>(false);
 const dialogEdicaoVisivel = ref<boolean>(false);
+let logado = inject('logado') as Boolean;
+
 </script>
 
 <template>
@@ -16,7 +18,6 @@ const dialogEdicaoVisivel = ref<boolean>(false);
     <Dialog v-model:visible="dialogEdicaoVisivel" header="Editar Informações" modal closable resizable :style="{ width: '700px' }" baseZIndex="10000" :draggable="false">
       <p>Em construção</p>
     </Dialog>
-
 
     <Drawer v-model:visible="visivel" style="  background-color: rgba(39, 39, 42, 0.384); backdrop-filter: blur(5px); border: none;">
         <template #header>
@@ -47,7 +48,7 @@ const dialogEdicaoVisivel = ref<boolean>(false);
           </div>
         </template>
     </Drawer>
-    <Button icon="bi bi-list" @click="visivel = !visivel" style="position: absolute; top: 10px; left: 10px;"/>
+    <Button icon="bi bi-list" @click="visivel = !visivel" v-if="logado" style="position: absolute; top: 10px; left: 10px;"/>
 
     <main class="main-content">
       <section class="content">
