@@ -1,12 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using System;
-using Projeto_Estacionamento.Contexts;
-using Projeto_Estacionamento.Services;
-using Projeto_Estacionamento.Services.Carro;
-using Projeto_Estacionamento.Services.Guarda;
-using Projeto_Estacionamento.Services.Motorista;
-
+using estacionamento_api.Contexts;
+using estacionamento_api.Services.Carro;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -24,7 +20,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -33,25 +29,13 @@ builder.Services.AddSwaggerGen();
 var configuration = builder.Configuration;
 var connectionString = configuration.GetConnectionString("PostgresConnectionString");
 
-//SERVIÇOS ================================================================|
+//CONTEXTOS
+builder.Services.AddDbContext<CarroContext>(options => options.UseNpgsql(connectionString));
+//CONTEXTOS
 
-
-
-
-builder.Services.AddDbContext<CarroContext>(options =>
-    options.UseNpgsql(connectionString));
-builder.Services.AddDbContext<PessoaContext>(options =>
-    options.UseNpgsql(connectionString));
-
+//SERVIÇOS
 builder.Services.AddScoped<ICarroService, CarroService>();
-builder.Services.AddScoped<IMotoristaService, MotoristaService>();
-builder.Services.AddScoped<IGuardaService, GuardaService>();
-
-
-
-
-
-//SERVIÇOS ================================================================|
+//SERVIÇOS 
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

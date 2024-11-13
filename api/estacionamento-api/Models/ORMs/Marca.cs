@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Projeto_Estacionamento.ORMModel;
+namespace estacionamento_api.Models.ORMs;
 
-[Table("tipo_carro", Schema = "public")]
-public class TipoCarroORM
+[Table("marca", Schema = "public")]
+public class MarcaORM
 {
     [Key]
     [Column("id")]
@@ -12,7 +12,8 @@ public class TipoCarroORM
     public int Id { get; set; }
     
     [Column("descricao")]
-    public string Descricao { get; set; }
+    public String Descricao { get; set; }
     
-    public ICollection<CarroORM> Carros { get; set; }
+    [Column("nome")]
+    public String Nome { get; set; }
 }

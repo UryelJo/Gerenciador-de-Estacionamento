@@ -18,7 +18,7 @@ const router = createRouter({
     {
       path: '/gerenciar-funcionarios',
       name: 'tela de gerenciamento de funcionarios',
-      component: () => import('../views/GerenciadorDeFuncionarios.vue')
+      component: () => import('../views/gerenciador-de-funcionarios/GerenciadorDeFuncionarios.vue')
     },
     {
       path: '/gerenciar-planos',

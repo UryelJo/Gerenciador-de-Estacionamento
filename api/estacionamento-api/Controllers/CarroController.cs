@@ -1,27 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Projeto_Estacionamento.Contexts;
-using Projeto_Estacionamento.DTOs;
-using Projeto_Estacionamento.ORMModel;
-using Projeto_Estacionamento.Services;
-using Projeto_Estacionamento.Services.Carro;
+﻿using estacionamento_api.Models.DTOs;
+using estacionamento_api.Services.Carro;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Projeto_Estacionamento.Controllers;
+namespace estacionamento_api.Controllers;
 
-[Route("api/carros")]
 [ApiController]
-public class CarroController : Controller
+[Route("carros")]
+public class CarroController : ControllerBase
 {
-    private readonly ICarroService _carService;
-    
-    public CarroController(ICarroService carService)
+    private ICarroService _carroService;
+
+    public CarroController(ICarroService carroService)
     {
-        this._carService = carService;
+        this._carroService = carroService;
     }
     
-    [HttpGet("/listar-todos-os-carros")]
-    public async Task<List<CarroDTO>> ListarTodosOsCarros()
+    [HttpGet("/listar-carros")]
+    public IActionResult ListarTodosOsCarros()
     {
-        return (await this._carService.ListarTodosOsCarros());
+        return Ok(this._carroService.ListarTodosOsCarros());
     }
-    
 }
