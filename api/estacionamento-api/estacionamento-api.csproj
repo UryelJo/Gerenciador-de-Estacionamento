@@ -22,6 +22,19 @@
 
     <ItemGroup>
       <Compile Remove="Models\DTOs\Carro.cs" />
+      <Compile Remove="Models\ORMs\ManyToManyORMs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Models\ORMs\ManyToManyORMs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Models\ORMs\ManyToManyORMs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Models\ORMs\ManyToManyORMs\**" />
     </ItemGroup>
 
 </Project>
